@@ -1,4 +1,0 @@
-apiVersion: v1
-description: NGINX Example with Values
-name: helm-nginx
-version: 1.0.1
