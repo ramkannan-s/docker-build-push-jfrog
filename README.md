@@ -1,1 +1,2 @@
-# helm-chart-push-jfrog
+# docker-build-push-jfrog
+Docker Build and Push Image to Jfrog
