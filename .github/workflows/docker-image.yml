@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+env:
+  DOCKER_REGISTRY: ramkannans.jfrog.io
+  APP_NAME: slipway-docker-dev-local/slipway-hello-world
+  JFROG_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Docker Login
+      run: docker login -u "ramkannan2612@gmail.com" -p "$JFROG_PASSWORD" $DOCKER_REGISTRY
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag "$DOCKER_REGISTRY/$APP_NAME:1.0.${{ github.run_id }}"
+
+    - name: Push to JFrog
+      run: docker push "$DOCKER_REGISTRY/$APP_NAME:1.0.${{ github.run_id }}"
