@@ -9,7 +9,7 @@ resources:
     
 pipelines: 
    - name: pipeline_build_docker
-    steps:
+     steps:
       - name: docker_build
         type: DockerBuild
         configuration:
