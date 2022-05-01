@@ -18,5 +18,7 @@ pipelines:
           dockerFileName: Dockerfile
           dockerImageName: slipway-docker-dev-local/slipway-hello-world  # replace with your image path and name
           dockerImageTag: 1.0.${run_number}
+          inputResources:
+            - name: data_repo
           integrations:
             - name: art  
