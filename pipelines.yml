@@ -1,1 +1,22 @@
-
+resources: 
+   - name: data_repo
+     type: GitRepo
+     configuration: 
+       gitProvider: hubram
+       path: ramkannan-s/docker-build-push-jfrog
+       branches:
+         include: main
+    
+pipelines: 
+   - name: pipeline_build_docker
+    steps:
+      - name: docker_build
+        type: DockerBuild
+        configuration:
+          affinityGroup: test_group
+          dockerFileLocation: .
+          dockerFileName: Dockerfile
+          dockerImageName: slipway-docker-dev-local/slipway-hello-world  # replace with your image path and name
+          dockerImageTag: 1.0.${run_number}
+          integrations:
+            - name: art  
