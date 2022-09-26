@@ -37,8 +37,11 @@ jobs:
     - name: Push to JFrog
       run: docker push "$DOCKER_REGISTRY/$APP_NAME:2.0.${{ github.run_id }}"
       
+    - name: Setup Server
+      run: jfrog c add ramkannans --url="$DOCKER_REGISTRY" --user="ramkannan2612@gmail.com" --password="$JFROG_PASSWORD" ; jf c use ramkannans
+      
     - name: Publish Docker Build Info
       run: |
-        jfrog rt bce training 2
-        jfrog rt bag training 2
-        jfrog rt bp training 2
+        jfrog rt bce "$JFROG_CLI_BUILD_NAME" 2
+        jfrog rt bag "$JFROG_CLI_BUILD_NAME" 2
+        jfrog rt bp "$JFROG_CLI_BUILD_NAME" 2
