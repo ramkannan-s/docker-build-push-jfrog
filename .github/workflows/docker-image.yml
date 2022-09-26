@@ -5,8 +5,6 @@ env:
   APP_NAME: slipway-docker-dev-local/slipway-hello-world
   JFROG_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
   JF_CLI_VERSION: 2.11.0
-  JFROG_CLI_BUILD_NAME: training
-  JFROG_CLI_BUILD_NUMBER: 2.0.${{ github.run_id }}
 
 on:
   push:
@@ -38,10 +36,10 @@ jobs:
       run: docker push "$DOCKER_REGISTRY/$APP_NAME:2.0.${{ github.run_id }}"
       
     - name: Setup Server
-      run: jfrog c add ramkannans --url="$DOCKER_REGISTRY" --user="admin" --password="@World10" ; jf c use ramkannans
+      run: jfrog c add ramkannans --url="$DOCKER_REGISTRY" --user="admin" --password="APBTbGRmhQf6k9fYqTpsjwpf84o"
       
     - name: Publish Docker Build Info
       run: |
-        jfrog rt bce "$JFROG_CLI_BUILD_NAME" 2
-        jfrog rt bag "$JFROG_CLI_BUILD_NAME" 2
-        jfrog rt bp "$JFROG_CLI_BUILD_NAME" 2
+        jfrog rt bce "$JFROG_CLI_BUILD_NAME" "$JFROG_CLI_BUILD_NUMBER"
+        jfrog rt bag "$JFROG_CLI_BUILD_NAME" "$JFROG_CLI_BUILD_NUMBER"
+        jfrog rt bp "$JFROG_CLI_BUILD_NAME" "$JFROG_CLI_BUILD_NUMBER"
