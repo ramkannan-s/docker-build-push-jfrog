@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     
     - name: Setup JFrog CLI
       uses: jfrog/setup-jfrog-cli@v2.0.0  
@@ -36,10 +36,10 @@ jobs:
       run: docker push "$DOCKER_REGISTRY/$APP_NAME:2.0.${{ github.run_id }}"
 
     - name: Setup Server
-      run: jfrog c add ramkannans --url="https://ramkannans.jfrog.io/" --user="admin" --password="AKCp8nGaKUhp8V4jAVmCs9aTdFm9tZKpt6qZbBVntNGcALugLE4jW9gVgt63GyDAKhLPvDb76"
+      run: jfrog c add ramkannans --url="https://ramkannans.jfrog.io/" --user="admin" --password="AKCp8nGaKUhp8V4jAVmCs9aTdFm9tZKpt6qZbBVntNGcALugLE4jW9gVgt63GyDAKhLPvDb76" ; jf c show
       
     - name: Publish Docker Build Info
       run: |
-        jfrog rt bce training 5
-        jfrog rt bag "$JFROG_CLI_BUILD_NAME" "$JFROG_CLI_BUILD_NUMBER" -url="$DOCKER_REGISTRY"
-        jfrog rt bp "$JFROG_CLI_BUILD_NAME" "$JFROG_CLI_BUILD_NUMBER" -url="$DOCKER_REGISTRY"
+        jfrog rt bce "$JFROG_CLI_BUILD_NAME" "$JFROG_CLI_BUILD_NUMBER"
+        jfrog rt bag "$JFROG_CLI_BUILD_NAME" "$JFROG_CLI_BUILD_NUMBER"
+        jfrog rt bp "$JFROG_CLI_BUILD_NAME" "$JFROG_CLI_BUILD_NUMBER"
