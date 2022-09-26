@@ -39,6 +39,6 @@ jobs:
       
     - name: Publish Docker Build Info
       run: |
-        jfrog rt bce $JFROG_CLI_BUILD_NAME 2
-        jfrog rt bag $JFROG_CLI_BUILD_NAME $JFROG_CLI_BUILD_NUMBER
-        jfrog rt bp $JFROG_CLI_BUILD_NAME $JFROG_CLI_BUILD_NUMBER
+        jfrog rt bce training 2
+        jfrog rt bag training 2
+        jfrog rt bp training 2
