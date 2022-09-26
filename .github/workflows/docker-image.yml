@@ -27,3 +27,9 @@ jobs:
 
     - name: Push to JFrog
       run: docker push "$DOCKER_REGISTRY/$APP_NAME:1.0.${{ github.run_id }}"
+      
+    - name: Publish Docker Build Info
+      run: |
+        jfrog rt bce docker-$JFROG_CLI_BUILD_NAME $JFROG_CLI_BUILD_NUMBER
+        jfrog rt bag docker-$JFROG_CLI_BUILD_NAME $JFROG_CLI_BUILD_NUMBER
+        jfrog rt bp docker-$JFROG_CLI_BUILD_NAME $JFROG_CLI_BUILD_NUMBER
