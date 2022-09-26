@@ -19,6 +19,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
+    - name: Setup JFrog CLI
+      uses: jfrog/setup-jfrog-cli@v2.0.0  
+      with:
+        version: ${{ env.JF_CLI_VERSION }}
+    
     - name: Docker Login
       run: docker login -u "ramkannan2612@gmail.com" -p "$JFROG_PASSWORD" $DOCKER_REGISTRY
 
