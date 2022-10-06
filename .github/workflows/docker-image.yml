@@ -1,4 +1,4 @@
-name: Docker Image CI Training
+name: Docker Infy CI Training
 
 env:
   DOCKER_REGISTRY: ramkannans.jfrog.io
