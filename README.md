@@ -1,2 +1,2 @@
 # docker-build-push-jfrog
-Docker Build and Push Image to Jfrog
+Docker Build and Push Image to Jfrog..
