@@ -2,7 +2,7 @@ name: Docker CI Training Sample
 
 env:
   DOCKER_REGISTRY: ramkannans.jfrog.io
-  APP_NAME: slipway-docker-dev-local/slipway-hello-world
+  APP_NAME: default-docker/slipway-hello-world
   JFROG_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
   JFROG_DATA_PASSWORD: ${{ secrets.JFROG_DATA_PASSWORD }}
   JF_CLI_VERSION: 2.34.0
