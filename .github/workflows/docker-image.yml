@@ -37,7 +37,7 @@ jobs:
       run: jfrog c add ramkannans --url="https://mainjpd.devops-acc-us.jfrog.team/" --user="admin" --password="$JFROG_DATA_PASSWORD" ; jfrog c show
 
     - name: Push to JFrog
-      run: jfrog rt dp "mainjpd.devops-acc-us.jfrog.team/demo-docker-virtual/slipway-hello-world:2.0.${{ github.run_id }}" demo-docker-virtual --build-name="$JFROG_CLI_BUILD_NAME" --build-number="$JFROG_CLI_BUILD_NUMBER" 
+      run: jfrog rt dp "mainjpd.devops-acc-us.jfrog.team/demo-docker-virtual/slipway-hello-world:3.0.${{ github.run_id }}" demo-docker-virtual --build-name="$JFROG_CLI_BUILD_NAME" --build-number="$JFROG_CLI_BUILD_NUMBER" 
 
 #   - name: Push to JFrog
 #     run: docker push "$DOCKER_REGISTRY/$APP_NAME:2.0.${{ github.run_id }}"
