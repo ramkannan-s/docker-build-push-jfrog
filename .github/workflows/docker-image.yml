@@ -33,8 +33,11 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag "$DOCKER_REGISTRY/$APP_NAME:2.0.${{ github.run_id }}"
 
+ #   - name: Push to JFrog
+ #     run: docker push "$DOCKER_REGISTRY/$APP_NAME:2.0.${{ github.run_id }}"
+
     - name: Push to JFrog
-      run: docker push "$DOCKER_REGISTRY/$APP_NAME:2.0.${{ github.run_id }}"
+      run: jfrog rt dp "mainjpd.devops-acc-us.jfrog.team/$APP_NAME:2.0.${{ github.run_id }}" docker-repo --build-name="$JFROG_CLI_BUILD_NAME" --build-number="$JFROG_CLI_BUILD_NUMBER"
 
     - name: Setup Server
       run: jfrog c add ramkannans --url="https://mainjpd.devops-acc-us.jfrog.team/" --user="admin" --password="$JFROG_DATA_PASSWORD" ; jfrog c show
