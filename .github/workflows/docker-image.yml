@@ -1,11 +1,11 @@
 name: Docker CI Training Sample
 
 env:
-  DOCKER_REGISTRY: ramkannans.jfrog.io
+  DOCKER_REGISTRY: mainjpd.devops-acc-us.jfrog.team
   APP_NAME: default-docker/slipway-hello-world
   JFROG_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
   JFROG_DATA_PASSWORD: ${{ secrets.JFROG_DATA_PASSWORD }}
-  JF_CLI_VERSION: 2.34.0
+  JF_CLI_VERSION: 2.53.1
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
         version: ${{ env.JF_CLI_VERSION }}
     
     - name: Docker Login
-      run: docker login -u "ramkannan2612@gmail.com" -p "$JFROG_PASSWORD" $DOCKER_REGISTRY
+      run: docker login -u "admin" -p "$JFROG_PASSWORD" $DOCKER_REGISTRY
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag "$DOCKER_REGISTRY/$APP_NAME:2.0.${{ github.run_id }}"
@@ -37,7 +37,7 @@ jobs:
       run: docker push "$DOCKER_REGISTRY/$APP_NAME:2.0.${{ github.run_id }}"
 
     - name: Setup Server
-      run: jfrog c add ramkannans --url="https://ramkannans.jfrog.io/" --user="admin" --password="$JFROG_DATA_PASSWORD" ; jfrog c show
+      run: jfrog c add ramkannans --url="https://mainjpd.devops-acc-us.jfrog.team/" --user="admin" --password="$JFROG_DATA_PASSWORD" ; jfrog c show
       
     - name: Publish Docker Build Info
       run: |
